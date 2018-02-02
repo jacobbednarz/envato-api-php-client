@@ -5,4 +5,7 @@ php:
   - 7.1
   - 7.2
 
+install:
+  - travis_retry composer install --no-interaction --no-suggest
+
 script: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
