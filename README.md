@@ -17,6 +17,11 @@ var_dump($client->whoami()->userId());
 // int(5777395)
 ```
 
+### Coverage
+
+What to know what endpoints are covered? Check out the types of [`Response`](https://github.com/jacobbednarz/envato-api-php-client/tree/master/src/Response)
+classes available. These classes are a one to one mapping of the API endpoints.
+
 ### Testing
 
 You can run the test suite using the following command:
