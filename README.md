@@ -32,3 +32,10 @@ $ ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
 
 Please. Please. Please. Ensure all changes have tests. If not, there is a good
 chance untested functionality will be broken without knowing about it.
+
+This project uses PHP Codesniffer to enforce standards in CI. You can run it 
+locally using:
+
+```
+$ ./vendor/bin/phpcs --standard=phpcs.xml src/
+```
