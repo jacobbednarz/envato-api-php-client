@@ -32,4 +32,8 @@ class ApiClient extends Client {
     return new Response\WhoAmI($request);
   }
 
+  public function account() {
+    $request = $this->get('https://api.envato.com/v1/market/private/user/account.json');
+    return new Response\Account($request);
+  }
 }
