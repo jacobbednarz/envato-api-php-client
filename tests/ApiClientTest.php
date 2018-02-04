@@ -24,11 +24,11 @@ final class ApiClientTest extends TestCase {
   }
 
   public function testClientVerifiesConnection() {
-    $this->assertEquals($this->client->getConfig()['verify'], true);
+    $this->assertEquals($this->client->getConfig()['verify'], TRUE);
   }
 
   public function testClientDoesNotFollowRedirects() {
-    $this->assertEquals($this->client->getConfig()['allow_redirects'], false);
+    $this->assertEquals($this->client->getConfig()['allow_redirects'], FALSE);
   }
 
   public function testClientHasUserAgent() {

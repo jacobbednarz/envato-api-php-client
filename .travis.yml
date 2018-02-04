@@ -8,4 +8,6 @@ php:
 install:
   - travis_retry composer install --no-interaction --no-suggest
 
-script: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+script:
+  - ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+  - ./vendor/bin/phpcs --standard=phpcs.xml src/

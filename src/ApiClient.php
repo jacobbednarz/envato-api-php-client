@@ -13,8 +13,8 @@ class ApiClient extends Client {
     $defaults = array(
       'connect_timeout' => '3',
       'timeout' => '10',
-      'verify' => true,
-      'allow_redirects' => false,
+      'verify' => TRUE,
+      'allow_redirects' => FALSE,
       'headers' => array(
         'Authorization' => "Bearer {$config['token']}",
         'User-Agent' => 'Envato PHP SDK/0.1',
