@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 class ApiClient extends Client {
   public static function factory($config = array()) {
     if (empty($config['token'])) {
-      throw new Exceptions\MissingClientTokenException('Missing required API token.');
+      throw new Exception\MissingClientTokenException('Missing required API token.');
     }
 
     $defaults = array(
