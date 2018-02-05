@@ -11,7 +11,7 @@ final class ApiClientTest extends TestCase {
   }
 
   public function testClientApiTokenIsRequired() {
-    $this->expectException(Envato\Exceptions\MissingClientTokenException::class);
+    $this->expectException(Envato\Exception\MissingClientTokenException::class);
     ApiClient::factory(array());
   }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Envato\Exceptions;
+namespace Envato\Exception;
 
 // @codingStandardsIgnoreStart
 class MissingClientTokenException extends \Exception {}
