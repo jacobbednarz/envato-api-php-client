@@ -36,4 +36,9 @@ class ApiClient extends Client {
     $request = $this->get('https://api.envato.com/v1/market/private/user/account.json');
     return new Response\Account($request);
   }
+
+  public function search( $query = array() ) {
+    $request = $this->get('https://api.envato.com/v1/discovery/search/search/item', ['query' => $query]);
+    return new Response\Search($request);
+  }
 }
