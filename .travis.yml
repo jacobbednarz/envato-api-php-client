@@ -9,5 +9,5 @@ install:
   - travis_retry composer install --no-interaction --no-suggest
 
 script:
-  - ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+  - ./vendor/bin/phpunit-randomizer --order rand --bootstrap vendor/autoload.php tests
   - ./vendor/bin/phpcs --standard=phpcs.xml src/
