@@ -2,6 +2,8 @@
 
 namespace Envato\Exception;
 
-// @codingStandardsIgnoreStart
-class MissingClientTokenException extends \Exception {}
-// @codingStandardsIgnoreEnd
+class MissingClientTokenException extends \Exception {
+  public function __construct() {
+    parent::__construct('Missing required API token.');
+  }
+}
