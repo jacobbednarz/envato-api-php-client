@@ -7,7 +7,7 @@ class RateLimiter {
    * @var string Filename of the lock file that is used to hold the unix
    * timestamp of rate limit timeouts.
    */
-  public $rate_limit_file_name = 'envato_api_sdk.lock';
+  public $rateLimitFileName = 'envato_api_sdk.lock';
 
   /**
    * Checks if the client is currently throttled from making requests.
@@ -16,9 +16,9 @@ class RateLimiter {
    * connections.
    */
   public function isThrottled() {
-    $rate_limit_timeout_value = $this->rateLimitTimeoutValue();
+    $rateLimitTimeoutValue = $this->rateLimitTimeoutValue();
 
-    if (time() > $rate_limit_timeout_value) {
+    if (time() > $rateLimitTimeoutValue) {
       $this->removeThrottle();
       return FALSE;
     } else {
@@ -29,18 +29,18 @@ class RateLimiter {
   /**
    * Create a rate limit flag.
    *
-   * @param int $retry_after_value Time in seconds that the client has been rate
+   * @param int $retryAfterValue Time in seconds that the client has been rate
    * limited for.
    */
-  public function setThrottle($retry_after_value) {
-    $retry_after_timestamp = time() + $retry_after_value;
+  public function setThrottle($retryAfterValue) {
+    $retyAfterTimestamp = time() + $retryAfterValue;
 
     if (!$this->temporary_directory_writable()) {
       return FALSE;
     }
 
-    $lock_file = fopen($this->full_system_path_to_lock_file(), 'w');
-    fwrite($lock_file, $retry_after_timestamp);
+    $lock_file = fopen($this->fullSystemPathToLockFile(), 'w');
+    fwrite($lock_file, $retyAfterTimestamp);
     fclose($lock_file);
   }
 
@@ -49,19 +49,19 @@ class RateLimiter {
    *
    * @return string
    */
-  public function full_system_path_to_lock_file() {
-    return sys_get_temp_dir() . '/' . $this->rate_limit_file_name;
+  public function fullSystemPathToLockFile() {
+    return sys_get_temp_dir() . '/' . $this->rateLimitFileName;
   }
 
   /**
    * Clean up throttle flag.
    */
   protected function removeThrottle() {
-    if (!$this->lock_file_is_accessible()) {
+    if (!$this->lockFileIsAccessible()) {
       return FALSE;
     }
 
-    unlink($this->full_system_path_to_lock_file());
+    unlink($this->fullSystemPathToLockFile());
   }
 
   /**
@@ -72,11 +72,11 @@ class RateLimiter {
    * bypassing the rate limiting.
    */
   protected function rateLimitTimeoutValue() {
-    if (!$this->lock_file_is_accessible()) {
+    if (!$this->lockFileIsAccessible()) {
       return 0;
     }
 
-    return (int) file_get_contents($this->full_system_path_to_lock_file());
+    return (int) file_get_contents($this->fullSystemPathToLockFile());
   }
 
   /**
@@ -85,7 +85,7 @@ class RateLimiter {
    * @return boolean
    */
   protected function temporary_directory_writable() {
-    return is_writable(dirname($this->full_system_path_to_lock_file()));
+    return is_writable(dirname($this->fullSystemPathToLockFile()));
   }
 
   /**
@@ -93,7 +93,7 @@ class RateLimiter {
    *
    * @return boolean
    */
-  protected function lock_file_is_accessible() {
-    return (file_exists($this->full_system_path_to_lock_file()) && is_readable($this->full_system_path_to_lock_file()));
+  protected function lockFileIsAccessible() {
+    return (file_exists($this->fullSystemPathToLockFile()) && is_readable($this->fullSystemPathToLockFile()));
   }
 }

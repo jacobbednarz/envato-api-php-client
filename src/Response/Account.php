@@ -13,7 +13,7 @@ class Account {
     return $this->data->account->image;
   }
 
-  public function firstname() {
+  public function firstName() {
     return $this->data->account->firstname;
   }
 
@@ -21,11 +21,11 @@ class Account {
     return $this->data->account->surname;
   }
 
-  public function available_earnings() {
+  public function availableEarnings() {
     return $this->data->account->available_earnings;
   }
 
-  public function total_deposits() {
+  public function totalDeposits() {
     return $this->data->account->total_deposits;
   }
 

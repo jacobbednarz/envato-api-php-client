@@ -3,6 +3,7 @@
 namespace Envato\Response;
 
 class WhoAmI {
+
   protected $data;
 
   public function __construct($response) {

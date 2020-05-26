@@ -20,14 +20,14 @@ class ApiClient extends Client {
       throw new Exception\MissingClientTokenException;
     }
 
-    $rate_limiter = new RateLimiter();
+    $rateLimiter = new RateLimiter();
     $stack = new HandlerStack();
     $stack->setHandler(new CurlHandler());
 
     $stack->push(
       Middleware::mapRequest(
-        function (RequestInterface $request) use ($rate_limiter) {
-          if ($rate_limiter->isThrottled()) {
+        function (RequestInterface $request) use ($rateLimiter) {
+          if ($rateLimiter->isThrottled()) {
             throw new Exception\ClientIsRateLimitedException;
           } else {
             return $request;
@@ -38,9 +38,9 @@ class ApiClient extends Client {
 
     $stack->push(
       Middleware::mapResponse(
-        function (ResponseInterface $response) use ($rate_limiter) {
+        function (ResponseInterface $response) use ($rateLimiter) {
           if ($response->getStatusCode() == 429) {
-            $rate_limiter->setThrottle($response->getHeader('Retry-After')[0]);
+            $rateLimiter->setThrottle($response->getHeader('Retry-After')[0]);
             throw new Exception\ClientIsRateLimitedException;
           } else {
             return $response;
